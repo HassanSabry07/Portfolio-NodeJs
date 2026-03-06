@@ -1,11 +1,12 @@
 const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config(); // ← لازم يكون أول حاجة
+
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // ← بعد dotenv.config
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const dotenv = require('dotenv');
-dotenv.config();
 
 const home = require('./home');
 const about = require('./about');
@@ -14,7 +15,7 @@ const skills = require('./skills');
 const projects = require('./projects');
 const contact = require('./contact');
 const auth = require('./auth');
-const messages = require('./msg'); // ← جديد
+const messages = require('./msg');
 
 app.use(express.json());
 app.use(cors());
@@ -28,7 +29,7 @@ app.use('/skills', skills);
 app.use('/projects', projects);
 app.use('/contact', contact);
 app.use('/api/auth', auth);
-app.use('/messages', messages); // ← جديد
+app.use('/messages', messages);
 
 mongoose.connect('mongodb+srv://hassansabry116:01111309309@cluster0.2fwp18.mongodb.net/myDB?appName=Cluster0')
     .then(() => console.log('✅ Database connected successfully'))
